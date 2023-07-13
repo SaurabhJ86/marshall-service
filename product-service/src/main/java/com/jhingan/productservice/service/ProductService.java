@@ -37,10 +37,9 @@ public class ProductService {
     public List<ProductResponseDTO> getAllProducts()
     {
         List<Product> products = this.productRepository.findAll();
-        List<ProductResponseDTO> productResponseDTOS = products.stream().map(product -> ProductResponseDTO
+        return products.stream().map(product -> ProductResponseDTO
                 .builder()
                 .id(product.getId())
                 .name(product.getName()).build()).toList();
-        return productResponseDTOS;
     }
 }

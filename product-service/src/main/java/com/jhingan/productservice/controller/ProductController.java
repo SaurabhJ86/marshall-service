@@ -6,6 +6,8 @@ import com.jhingan.productservice.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -24,5 +26,12 @@ public class ProductController {
     {
         ProductResponseDTO productResponseDTO = this.productService.createProduct(productRequestDTO);
         return String.format("Product with id %s and name %s has been created",productResponseDTO.getId(), productResponseDTO.getName());
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductResponseDTO> getAllProducts()
+    {
+        return this.productService.getAllProducts();
     }
 }

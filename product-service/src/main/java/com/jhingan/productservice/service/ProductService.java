@@ -7,6 +7,8 @@ import com.jhingan.productservice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductService {
 
@@ -30,5 +32,15 @@ public class ProductService {
         productResponseDTO.setName(product1.getName());
         productResponseDTO.setId(product1.getId());
         return productResponseDTO;
+    }
+
+    public List<ProductResponseDTO> getAllProducts()
+    {
+        List<Product> products = this.productRepository.findAll();
+        List<ProductResponseDTO> productResponseDTOS = products.stream().map(product -> ProductResponseDTO
+                .builder()
+                .id(product.getId())
+                .name(product.getName()).build()).toList();
+        return productResponseDTOS;
     }
 }

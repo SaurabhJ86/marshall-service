@@ -1,6 +1,7 @@
 package com.jhingan.productservice.service;
 
 import com.jhingan.productservice.dto.ProductRequestDTO;
+import com.jhingan.productservice.dto.ProductResponseDTO;
 import com.jhingan.productservice.model.Product;
 import com.jhingan.productservice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,17 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public void createProduct(ProductRequestDTO productRequestDTO)
+    public ProductResponseDTO createProduct(ProductRequestDTO productRequestDTO)
     {
         Product product = new Product();
         product.setName(productRequestDTO.getName());
         product.setDescription(productRequestDTO.getDescription());
         product.setPrice(productRequestDTO.getPrice());
 
-        this.productRepository.save(product);
+        Product product1 = this.productRepository.save(product);
+        ProductResponseDTO productResponseDTO = new ProductResponseDTO();
+        productResponseDTO.setName(product1.getName());
+        productResponseDTO.setId(product1.getId());
+        return productResponseDTO;
     }
 }

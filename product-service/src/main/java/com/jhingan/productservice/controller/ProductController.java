@@ -41,4 +41,12 @@ public class ProductController {
     {
         this.productService.deleteProduct(id);
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public String updateProduct(@PathVariable String id,@RequestBody ProductRequestDTO productRequestDTO)
+    {
+        this.productService.updateProduct(id, productRequestDTO);
+        return "Product has been updated";
+    }
 }

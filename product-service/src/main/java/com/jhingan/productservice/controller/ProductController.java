@@ -34,4 +34,11 @@ public class ProductController {
     {
         return this.productService.getAllProducts();
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable String id)
+    {
+        this.productService.deleteProduct(id);
+    }
 }

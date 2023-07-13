@@ -42,4 +42,9 @@ public class ProductService {
                 .id(product.getId())
                 .name(product.getName()).build()).toList();
     }
+
+    public void deleteProduct(String id)
+    {
+        this.productRepository.deleteById(id);
+    }
 }
